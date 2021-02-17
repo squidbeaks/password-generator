@@ -9,29 +9,17 @@ function setPasswordLength() {
 }
 
 function selectCharacterTypes() {
-  var charactersPrompt = window.prompt(
-    "What special characters would you like to include? Select 1 or more options: 1 for lowercase, 2 for uppercase, 3 for numeric, and/or 4 for special characters."
-    );
-    // need to validate there is proper input and at least one character type must be selected
-    charactersPrompt = parseInt(charactersPrompt);
-    switch (charactersPrompt) {
-      case 1:
-        // lowercase
-        console.log("lowercase");
-      case 2:
-        // uppercase
-        console.log("uppercase");
-      case 3:
-        // numeric
-        console.log("numeric");
-      case 4:
-        // special characters
-        console.log("special characters");
-      default:
-        window.alert("You did not pick a valid option. Try again.");
-      // select character type again
-      selectCharacterTypes();
+  var lowerCase = window.confirm("Do you want include lowercase characters? Click OK for YES, and CANCEL for NO.");
+    if(lowerCase) {
+      return "true";
     }
+    else {
+      return "false";
+    }
+  var upperCase = window.confirm("Do you want include uppercase characters? Click OK for YES, and CANCEL for NO.");
+  var numeric = window.confirm("Do you want include numeric characters? Click OK for YES, and CANCEL for NO.");
+  var specialCharacters = window.confirm("Do you want include special characters? Click OK for YES, and CANCEL for NO.");
+  selectCharacterTypes();
 }
 
 function generatePassword() {
