@@ -1,35 +1,49 @@
-function setPasswordLength() {
-  var passwordLength = window.prompt(
-    "How long would you like your password? It must be between 8 and 128 characters."
-    );
-    // need to validate there is proper input
-
-    console.log("Your password will be " + passwordLength + " characters long.");
-    return "Your password will be " + passwordLength + " characters long.";
-}
-
-function selectCharacterTypes() {
-  var lowerCase = window.confirm("Do you want include lowercase characters? Click OK for YES, and CANCEL for NO.");
-    if(lowerCase) {
-      return "true";
-    }
-    else {
-      return "false";
-    }
-  var upperCase = window.confirm("Do you want include uppercase characters? Click OK for YES, and CANCEL for NO.");
-  var numeric = window.confirm("Do you want include numeric characters? Click OK for YES, and CANCEL for NO.");
-  var specialCharacters = window.confirm("Do you want include special characters? Click OK for YES, and CANCEL for NO.");
-  selectCharacterTypes();
-}
-
 function generatePassword() {
-  // prompt for length of password (has to be between 8 and 128 characters)
-    setPasswordLength();
-  // prompt for types of characters (lowercase, uppercase, numeric, and/or special characters)
-    selectCharacterTypes();
-  // when prompts are all answered, then password is generated
-  // password is displayed as an alert or on the page
-}
+// prompt for password length (8-128)
+var lengthPrompt = prompt(
+  "How long would you like your password? It must be between 8 and 128 characters."
+  );
+  // need to validate there is proper input
+  if (lengthPrompt < 8 || lengthPrompt > 128) {
+    alert("Password should be between 8 and 128 characters");
+    return generatePassword();
+  }
+
+  if (lengthPrompt === "" || lengthPrompt === null || isNaN(lengthPrompt)) {
+    alert("Your entry is invalid");
+    return generatePassword();
+  }
+
+// return "Your password will be " + lengthPrompt + " characters long.";
+  console.log(lengthPrompt);
+
+// confirm popup for uppercase
+  var upperCase = confirm("Do you want uppercase characters in your password?");
+  // need to validate
+  console.log("Uppercase: " + upperCase);
+
+  // confirm popup for lowercase
+  var lowerCase = confirm("Do you want lowercase characters in your password?");
+  // need to validate
+  console.log("Lowercase: " + lowerCase);
+
+  // confirm popup for numeric
+  var numChar = confirm("Do you want numeric characters in your password?");
+  // need to validate
+  console.log("Num Characters: " + numChar);
+
+  // confirm popup for special characters
+  var specialChar = confirm("Do you want special characters in your password?");
+  // need to validate
+  console.log("Special Characters: " + specialChar);
+};
+
+
+
+    // we need to make sure that at least one of the character types above is selected
+
+// generate password
+// display password
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -40,7 +54,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
