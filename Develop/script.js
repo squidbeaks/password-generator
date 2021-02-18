@@ -15,7 +15,7 @@ var lengthPrompt = prompt(
   }
 
 // return "Your password will be " + lengthPrompt + " characters long.";
-  console.log(lengthPrompt);
+  console.log("Password length: " + lengthPrompt);
 
 // confirm popup for uppercase
   var upperCase = confirm("Do you want uppercase characters in your password?");
