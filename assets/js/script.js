@@ -1,58 +1,59 @@
-// generate random uppercase character
-var upperCaseChar = String.fromCharCode(Math.floor(Math.random()*26)+65);
-console.log(upperCaseChar);
+var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+var upperCase = lowerCase.toUpperCase();
+var numChar = '0123456789'; 
+var specialChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+var lengthPrompt;
 
-// generate random lowercase character
-var lowerCaseChar = String.fromCharCode(Math.floor(Math.random()*10)+97);
-console.log(lowerCaseChar);
+var userResponses;
 
-// generate random numeric character
-var numericChar = String.fromCharCode(Math.floor(Math.random()*10)+48);
-console.log(numericChar);
+var passwordLength = function() {
+  var lengthPrompt = prompt(
+    // prompt for password length (8-128)
+    "How long would you like your password? It must be between 8 and 128 characters."
+    );
+    // need to validate there is proper input
+    if (lengthPrompt < 8 || lengthPrompt > 128) {
+      alert("Password should be between 8 and 128 characters");
+      return generatePassword();
+    };
 
-// generic random special character
-var randomSpecialChar = function() { 
-  var specialChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-  console.log(specialChar[Math.floor(Math.random() * specialChar.length)]);
+    if (lengthPrompt === "" || lengthPrompt === null || isNaN(lengthPrompt)) {
+      alert("Your entry is invalid");
+      return generatePassword();
+    };
+
+    console.log(lengthPrompt);
+    return lengthPrompt;
 };
-
-randomSpecialChar();
-
-var userResponses = {};
 
 var charTypePrompt = function() {
       // confirm popup for uppercase
       var upperCase = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
-      console.log("Uppercase: " + upperCase);
       if (upperCase) {
-        userResponses["upperCase"] = upperCase;
+        userResponses = upperCase;
       }
   
       // confirm popup for lowercase
       var lowerCase = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
-      console.log("Lowercase: " + lowerCase);
       if (lowerCase) {
-        userResponses["lowerCase"] = lowerCase;
+        userResponses = userResponses + lowerCase;
       }
   
       // confirm popup for numeric
       var numChar = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
-      console.log("Num Characters: " + numChar);
       if (numChar) {
-        userResponses["numChar"] = numChar;
+        userResponses = userResponses + numChar;
       }
   
       // confirm popup for special characters
       var specialChar = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
-      console.log("Special Characters: " + specialChar);
       if (specialChar) {
-        userResponses["specialChar"] = specialChar;
-      }
-  
+        userResponses = userResponses + specialChar;
+      }  
       if(upperCase || lowerCase || numChar || specialChar) {
         alert('Your password is being generated!'); 
       }
@@ -62,41 +63,25 @@ var charTypePrompt = function() {
       }
 };
 
+var getRandomIndex = function(stringLength) {
+  return Math.floor(Math.random() * Math.floor(stringLength));
+}
+
 var generatePassword = function() {
-  // prompt for password length (8-128)
-  var lengthPrompt = prompt(
-    "How long would you like your password? It must be between 8 and 128 characters."
-    );
-    // need to validate there is proper input
-    if (lengthPrompt < 8 || lengthPrompt > 128) {
-      alert("Password should be between 8 and 128 characters");
-      return generatePassword();
-    }
-  
-    if (lengthPrompt === "" || lengthPrompt === null || isNaN(lengthPrompt)) {
-      alert("Your entry is invalid");
-      return generatePassword();
-    } 
-
-    //   return "Your password will be " + lengthPrompt + " characters long.";
-    console.log("Password length: " + lengthPrompt);
-
-
+  var newPassword = getRandomIndex;
+  var charIndex;  
+  passwordLength();
+  console.log(lengthPrompt);
   charTypePrompt();
   console.log(userResponses);
 
-
-  
-
-
   // determine the length of the password
- // for (i = 0; i < lengthPrompt; i++)
+  for (var i = 0; i < lengthPrompt; i++) {
+    charIndex = getRandomIndex(userResponses.length);
+    newPassword = newPassword + userResponses.charAt(charIndex)
+  }
 
-  // which character types are true?
-
-  // generate a password of X length using whatever character types are true
-
-  // display password
+  return newPassword;
 };
 
 // Get references to the #generate element
@@ -108,7 +93,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
