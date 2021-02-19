@@ -1,10 +1,10 @@
-var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-var upperCase = lowerCase.toUpperCase();
-var numChar = '0123456789'; 
-var specialChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+var lowerCase = Array.from('abcdefghijklmnopqrstuvwxyz');
+var upperCase = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+var numericChar = Array.from('0123456789'); 
+var specialChar = Array.from("!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
 var lengthPrompt;
 
-var charSet = {};
+var charSet = [];
 
 var passwordLength = function() {
   lengthPrompt = prompt(
@@ -26,32 +26,26 @@ var passwordLength = function() {
 };
 
 var charTypePrompt = function() {
-      // confirm popup for uppercase
       var upperCase = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
-      // need to validate
+
       if (upperCase) {
-        charSet["upperCase"] = upperCase;
+        charSet.push(...upperCase) = upperCase;
       }
   
-      // confirm popup for lowercase
       var lowerCase = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
-      // need to validate
       if (lowerCase) {
-        charSet["lowerCase"] = lowerCase;
+        charSet.push(...lowerCase) = lowerCase;
       }
   
-      // confirm popup for numeric
       var numChar = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
-      // need to validate
       if (numChar) {
-        charSet["numChar"] = numChar;
+        charSet.push(...numericChar) = numericChar;
       }
   
-      // confirm popup for special characters
       var specialChar = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
       if (specialChar) {
-        charSet["specialChar"] = specialChar;
+        charSet.push(...specialChar) = specialChar;
       }  
       if(upperCase || lowerCase || numChar || specialChar) {
         alert('Your password is being generated!'); 
@@ -76,7 +70,7 @@ var generatePassword = function() {
 
   for (var i = 0; i < lengthPrompt; i++) {
     charIndex = getRandomIndex(charSet.length);
-    newPassword = newPassword + charSet.charAt(charIndex)
+    newPassword = newPassword + charSet[charIndex];
   }
 
   return newPassword;
