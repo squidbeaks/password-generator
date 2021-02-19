@@ -1,7 +1,7 @@
-var lowerCase = Array.from('abcdefghijklmnopqrstuvwxyz');
-var upperCase = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-var numericChar = Array.from('0123456789'); 
-var specialChar = Array.from("!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+var lowerCase = "abcdefghijklmnopqrstuvwxyz".split('');
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+var numericChar = "0123456789".split(''); 
+var specialChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split('');
 var lengthPrompt;
 
 var charSet = [];
@@ -29,23 +29,23 @@ var charTypePrompt = function() {
       var upperCase = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
 
       if (upperCase) {
-        charSet.push(...upperCase) = upperCase;
+        charSet.push(...upperCase)
       }
   
       var lowerCase = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
       if (lowerCase) {
-        charSet.push(...lowerCase) = lowerCase;
+        charSet.push(...lowerCase)
       }
   
       var numChar = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
       if (numChar) {
-        charSet.push(...numericChar) = numericChar;
+        charSet.push(...numericChar)
       }
   
       var specialChar = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
       if (specialChar) {
-        charSet.push(...specialChar) = specialChar;
+        charSet.push(...specialChar)
       }  
       if(upperCase || lowerCase || numChar || specialChar) {
         alert('Your password is being generated!'); 
