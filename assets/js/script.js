@@ -59,12 +59,12 @@ var getRandomIndex = function(str) {
 }
 
 var generatePassword = function() {
-  var newPassword = getRandomIndex();
   var charIndex;
   passwordLength();
   console.log(lengthPrompt);
   charTypePrompt();
-  var charSetString = charSet;
+  var newPassword = getRandomIndex(charSet.length);
+
 
   for (var i = 0; i < lengthPrompt; i++) {
     charIndex = getRandomIndex(charSet.length)
