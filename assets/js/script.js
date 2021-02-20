@@ -24,27 +24,27 @@ var passwordLength = function() {
 };
 
 var charTypePrompt = function() {
-      var upperCase = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
-      var lowerCase = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
-      var numChar = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
-      var specialChar = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
+      var upperCasePrompt = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
+      var lowerCasePrompt = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
+      var numCharPrompt = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
+      var specCharPrompt = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
 
-      if (upperCase) {
+      if (upperCasePrompt) {
         charSet = upperCaseChar;
       }
   
-      if (lowerCase) {
+      if (lowerCasePrompt) {
         charSet = charSet + lowerCaseChar;
       }
   
-      if (numChar) {
+      if (numCharPrompt) {
         charSet = charSet + numericChar;
       }
   
-      if (specialChar) {
+      if (specCharPrompt) {
         charSet = charSet + specialCharacter;
       }  
-      if(upperCase || lowerCase || numChar || specialChar) {
+      if(upperCasePrompt || lowerCasePrompt || numCharPrompt || specCharPrompt) {
         alert('Your password is being generated!'); 
       }
       else {
