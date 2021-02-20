@@ -1,7 +1,7 @@
-var lowerCase = "abcdefghijklmnopqrstuvwxyz".split('');
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+var lowerCaseChar = "abcdefghijklmnopqrstuvwxyz".split('');
+var upperCaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 var numericChar = "0123456789".split(''); 
-var specialChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split('');
+var specialCharacter = "!#$%&'()*+-/<=>?@[]^_`{|}~".split('');
 var lengthPrompt;
 
 var charSet = [];
@@ -21,31 +21,29 @@ var passwordLength = function() {
       alert("Your entry is invalid");
       return generatePassword();
     }
-
-    console.log(lengthPrompt);
 };
 
 var charTypePrompt = function() {
       var upperCase = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
 
       if (upperCase) {
-        charSet.push(...upperCase)
+        charSet.push(upperCaseChar)
       }
   
       var lowerCase = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
       if (lowerCase) {
-        charSet.push(...lowerCase)
+        charSet.push(lowerCaseChar)
       }
   
       var numChar = confirm("Do you want numeric characters in your password? Select OK for YES and CANCEL for NO.");
       if (numChar) {
-        charSet.push(...numericChar)
+        charSet.push(numericChar)
       }
   
       var specialChar = confirm("Do you want special characters in your password? Select OK for YES and CANCEL for NO.");
       // need to validate
       if (specialChar) {
-        charSet.push(...specialChar)
+        charSet.push(specialCharacter)
       }  
       if(upperCase || lowerCase || numChar || specialChar) {
         alert('Your password is being generated!'); 
@@ -57,7 +55,7 @@ var charTypePrompt = function() {
 };
 
 var getRandomIndex = function(str) {
-  return Math.floor(Math.random() * Math.floor(str));
+  return Math.floor(Math.random() * str);
 }
 
 var generatePassword = function() {
@@ -66,11 +64,17 @@ var generatePassword = function() {
   passwordLength();
   console.log(lengthPrompt);
   charTypePrompt();
-  console.log(charSet);
+  var charSetString = charSet.toString();
+  var charSetNoCommas = charSetString.replace(/,/g, '');
+  console.log(charSetString);
+  console.log(charSetNoCommas);
 
   for (var i = 0; i < lengthPrompt; i++) {
-    charIndex = getRandomIndex(charSet.length);
-    newPassword = newPassword + charSet[charIndex];
+    charIndex = getRandomIndex(charSetNoCommas.length)
+    console.log(charSetNoCommas.length);
+    console.log(charIndex);
+    newPassword = newPassword + charSetNoCommas[charIndex];
+    console.log(newPassword);
   }
 
   return newPassword;
