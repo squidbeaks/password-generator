@@ -6,6 +6,7 @@ var passwordLength;
 
 var charSet;
 
+// prompt user for password length
 var lengthPrompt = function() {
   passwordLength = prompt(
     "How long would you like your password? It must be between 8 and 128 characters."
@@ -22,6 +23,7 @@ var lengthPrompt = function() {
     }
 };
 
+// prompt user for character types they prefer
 var charTypePrompt = function() {
       var upperCasePrompt = confirm("Do you want uppercase characters in your password? Select OK for YES and CANCEL for NO.");
       var lowerCasePrompt = confirm("Do you want lowercase characters in your password? Select OK for YES and CANCEL for NO.");
@@ -53,6 +55,7 @@ var charTypePrompt = function() {
       }
 };
 
+// function to randomize character selection for character set
 var getRandomIndex = function(stringLength) {
   return Math.floor(Math.random() * stringLength);
 }
@@ -63,8 +66,8 @@ var generatePassword = function() {
   charTypePrompt();
   var newPassword = '';
 
-
-  for (var i = 0; i < passwordLength; i++) {
+// based on password length and character type preferences, will generate random password via for loop
+for (var i = 0; i < passwordLength; i++) {
     charIndex = getRandomIndex(charSet.length)
     newPassword += charSet.charAt(charIndex);
   }
